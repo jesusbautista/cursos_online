@@ -46,4 +46,22 @@
 		}	
 
 	}
+
+
+	function obtenerCapituloPorId($capitulo_id)
+	{
+		global $conexion;
+		$consulta = "SELECT * FROM cursos WHERE id=" . $capitulo_id . " LIMIT 1";
+		$respuesta= mysql_query($consulta,$conexion);
+		$verificarConsulta($respuesta);
+		if ($capitulo=mysql_fetch_array($respuesta)) 
+		{
+			return $capitulo;
+		}
+		else
+		{
+			return NULL;
+		}	
+
+	}
  ?>

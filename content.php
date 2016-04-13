@@ -10,17 +10,23 @@
 		$capitulo="";
 		#funcion que devuelve los cursos
 		$curso_reg=obtenerCursoPorId($curso_select);
+		#cuando tenga un valor vacio
+		$capitulo_reg=NULL;
 	}
 	elseif(isset($GET["capitulo"]))
 	{
 		$capitulo_select=$GET['capitulo'];
 		#lo mismo que el anterior
 		$curso="";
+		$capitulo_reg=obtenerCapituloPorId($capitulo_select);
+		$curso_reg=NULL;
 	}
 	else
 	{
 		$capitulo_select="";
 		$curso_select="";
+		$capitulo_reg=NULL;
+		$curso_reg=NULL;
 	}
 
  ?>
@@ -64,8 +70,14 @@
 				<td id="pagina">
 					<?php 
 					#salida, regresa la matriz fetch array de php el nombre del curso
+					if (!is_null($curso_reg)) 
+					{
 						echo $curso_reg["nombre"];
-						echo $capitulo_select;
+					}
+					elseif(!is_null($capitulo_reg))
+					{
+						echo $capitulo_reg["nombre"];
+					}
 					 ?>
 		</td>
 	</tr>

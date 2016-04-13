@@ -32,7 +32,14 @@
 
 					while ($curso=mysql_fetch_array($cursos)) 
 					{
-						echo "<li><a href=\"content.php?curso=". urlencode($curso["id"]) .
+						#separando las listas en varias cadena
+						echo "<li";
+						if($curso["id"]==$curso_select)
+						{
+							echo "class=\"selected\"";
+						}
+						
+						echo  "><a href=\"content.php?curso=". urlencode($curso["id"]) .
 						"\">". $curso["nombre"]. "</a> </li> <ul class='capitulos'>";
 						
 						$capitulos=obtenerCapitulosPorCursos($curso["id"]);
@@ -40,7 +47,13 @@
 					//Busquedad de capitulos dentro de la base de datos cursos
 					while ($capitulo=mysql_fetch_array($capitulos)) 
 					{
-						echo "<li><a href=\"content.php?capitulos=". urlencode($capitulo["id"]). "\">". $capitulo["nombre"]. "</a> </li>";
+						echo "<li";
+						if($curso["id"]==$curso_select)
+						{
+							echo "class=\"selected\"";
+						}
+						echo   "><a href=\"content.php?capitulos=". urlencode($capitulo["id"]). 
+						"\">". $capitulo["nombre"]. "</a> </li>";
 					}
 					}
 					?>

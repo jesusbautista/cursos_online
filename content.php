@@ -8,6 +8,8 @@
 		$curso_select=$GET['curso'];
 		#en caso de que no tenga algun valor devuelve un null
 		$capitulo="";
+		#funcion que devuelve los cursos
+		$curso_reg=obtenerCursoPorId($curso_select);
 	}
 	elseif(isset($GET["capitulo"]))
 	{
@@ -59,9 +61,14 @@
 					?>
 					</ul>
 				</td>
-				<td id="pagina">Edicion de contenidos
+				<td id="pagina">
+					<?php 
+					#salida, regresa la matriz fetch array de php el nombre del curso
+						echo $curso_reg["nombre"];
+						echo $capitulo_select;
+					 ?>
 		</td>
-	</t
+	</tr>
 		</table>
 <?php require_once("./include/footer.php"); ?>
 

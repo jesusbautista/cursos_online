@@ -29,4 +29,21 @@
 		return $capitulos;
 
 	}
+
+	function obtenerCursoPorId($curso_id)
+	{
+		global $conexion;
+		$consulta = "SELECT * FROM cursos WHERE id=" . $curso_id . " LIMIT 1";
+		$respuesta= mysql_query($consulta,$conexion);
+		$verificarConsulta($respuesta);
+		if ($curso=mysql_fetch_array($respuesta)) 
+		{
+			return $curso;
+		}
+		else
+		{
+			return NULL;
+		}	
+
+	}
  ?>

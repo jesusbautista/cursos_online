@@ -68,17 +68,17 @@
 					</ul>
 				</td>
 				<td id="pagina">
-					<?php 
-					#salida, regresa la matriz fetch array de php el nombre del curso
-					if (!is_null($curso_reg)) 
-					{
-						echo $curso_reg["nombre"];
+					<?php if (!is_null($curso_reg)) {?>
+					<h2> <?php	echo $curso_reg["nombre"]; ?> </h2>
+					<?php } elseif(!is_null($capitulo_reg)) {?>
+					<h2> <?php $capitulo_reg["nombre"]; ?></h2>';
+					<div id="pagina_contenido">
 					}
-					elseif(!is_null($capitulo_reg))
-					{
-						echo $capitulo_reg["nombre"];
-					}
-					 ?>
+					<?php echo $capitulo_reg["contenido"]; ?>
+					</div> 
+					<?php }  else {?>
+					"<h2>Selecciona un curso o capitulo</h2>";
+					 <?php  } ?>
 		</td>
 	</tr>
 		</table>

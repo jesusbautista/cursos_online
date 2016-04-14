@@ -131,4 +131,26 @@
 		$salida.= "</ul>";
 		return $salida;
 }
+
+function preparar_consulta($consulta)
+{
+	$magic_q_activado = get_magic_quotes_gpc();
+	if (function_exists("mysql_real_escape_string"))
+	{
+		if ($magic_q_activado) 
+		{
+			$consulta=stripslashes($consulta);
+		}
+		$consulta=mysql_real_escape_string($consulta);
+	}
+	else
+	{
+	if (!$magic_q_activado)
+	 {
+		$consulta=addcslashes($consulta);
+	}
+}
+return $consulta;
+}
+
  ?>

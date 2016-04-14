@@ -9,7 +9,7 @@
 				</td>
 				<td id="pagina">
 				<h2> Agregar un nuevo curso: </h2>
-				<form action="create_couse.php" method="post">
+				<form action="create_course.php" method="post">
 					<p>
 						Nombre de curso <input name="nombre">
 					</p>
@@ -34,9 +34,10 @@
 						</p>
 						<input type="submit" value="Añadir Curso">
 					</form>
+					<br>
 					<a href="content.php">Cancelar</a>
-		</td>
-	</tr>
-		</table>
+				</td>
+					</tr>
+			</table>
 <?php require_once("./include/footer.php"); ?>
 

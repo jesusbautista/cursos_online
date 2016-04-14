@@ -64,4 +64,71 @@
 		}	
 
 	}
+
+
+	function obtener_pagina()
+	{
+		global $curso_reg;
+		global $capitulo_reg;
+
+		if(isset($GET["curso"]))
+		{
+		
+		#funcion que devuelve los cursos
+		$curso_reg=obtenerCursoPorId($GET["curso"]);
+		#cuando tenga un valor vacio
+		$capitulo_reg=NULL;
+		}
+		elseif(isset($GET["capitulo"]))
+		{
+		
+		$capitulo_reg=obtenerCapituloPorId($GET["capitulo"]);
+		$curso_reg=NULL;
+		}
+		else
+		{
+		
+		$capitulo_reg=NULL;
+		$curso_reg=NULL;
+		}
+	}
+
+
+	function menu($curso_reg,$capitulo_reg)
+	{
+		$salida= "<ul class=\"cursos\">";
+		 #Realizando la consulta 
+		$cursos = obtenerCursos();
+
+		while ($curso=mysql_fetch_array($cursos)) 
+		{
+		#separando las listas en varias cadena
+		$salida.= "<li";
+		if($curso["id"]==$curso_reg["id"])
+		{
+			$salida.= "class=\"selected\"";
+		}
+						
+			$salida.=  "><a href=\"content.php?curso=". urlencode($curso["id"]) .
+		"\">". $curso["nombre"]. "</a> </li> <ul class='capitulos'>";
+						
+		$capitulos=obtenerCapitulosPorCursos($curso["id"]);
+					
+		//Busquedad de capitulos dentro de la base de datos cursos
+		while ($capitulo=mysql_fetch_array($capitulos)) 
+		{
+			$salida.= "<li";
+		if($capitulo["id"]==$capitulo_reg["id"])
+		{
+			$salida.= "class=\"selected\"";
+		}
+			
+		$salida.=   "><a href=\"content.php?capitulo=". urlencode($capitulo["id"]). 
+					"\">". $capitulo["nombre"]. "</a> </li>";
+					}
+		$salida.= '</ul>';
+		}
+		$salida.= "</ul>";
+		return $salida;
+}
  ?>

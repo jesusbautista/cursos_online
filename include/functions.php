@@ -109,7 +109,7 @@
 			$salida.= "class=\"selected\"";
 		}
 						
-			$salida.=  "><a href=\"content.php?curso=". urlencode($curso["id"]) .
+			$salida.=  "><a href=\"edit_course.php?curso=". urlencode($curso["id"]) .
 		"\">". $curso["nombre"]. "</a> </li> <ul class='capitulos'>";
 						
 		$capitulos=obtenerCapitulosPorCursos($curso["id"]);
@@ -151,6 +151,21 @@ function preparar_consulta($consulta)
 	}
 }
 return $consulta;
+}
+
+function validar_campos_obligatorios($campos_obligatorio,$errores)
+{
+
+	foreach ($campos_obligatorio as $campos) 
+	{
+		
+		if (!isset($_POST[$campos]) || empty($_POST[$campos])) 
+		{
+		# validacion para no reciber un nombre de curso vacio
+		$errores[]=$campos; # nombre es una variable de html
+		}
+	}
+
 }
 
  ?>

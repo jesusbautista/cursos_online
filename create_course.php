@@ -1,4 +1,33 @@
 <?php require_once("./include/connection_db.php"); ?>
+<?php 
+
+	$errores = array( ); # esta variable almacenara errores en la verificacion
+	
+	validar_campos_obligatorios( array("nombre","posicion","visibilidad"),$erores);
+
+
+	
+
+	if (!isset($_POST["posicion"]) || empty($_POST["posicion"])) 
+	{
+		# validacion para no reciber un nombre de curso vacio
+		$errores[]="posicion"; # posicion es una variable de html
+	}
+
+	if (!isset($_POST["visibilidad"]) || empty($_POST["visibilidad"])) 
+	{
+		# validacion para no reciber un nombre de curso vacio
+		$errores[]="visibilidad"; # posicion es una variable de html
+	}
+
+
+	if (!empty($errores))
+	 {
+		#si la variable error es vacia regresa
+		header("Location: new_course.php");
+		exit;
+	}
+ ?>
 <?php require_once("./include/functions.php"); ?>
 <?php
 

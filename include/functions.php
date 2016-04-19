@@ -7,6 +7,25 @@
 		}
 	}
 
+	function validar_campos_obligatorios($campos_obligatorio)
+{
+	$errores=array();
+
+	foreach ($campos_obligatorio as $campos) 
+	{
+		
+		if (!isset($_POST[$campos]) || empty($_POST[$campos]) && !is_numeric($_POST[$campos])) 
+		{
+		# validacion para no reciber un nombre de curso vacio
+		$errores[]=$campos; # nombre es una variable de html
+		}
+	}
+	return $errores;
+
+}
+
+
+
 
 	function obtenerCursos()
 	{
@@ -151,21 +170,6 @@ function preparar_consulta($consulta)
 	}
 }
 return $consulta;
-}
-
-function validar_campos_obligatorios($campos_obligatorio,$errores)
-{
-
-	foreach ($campos_obligatorio as $campos) 
-	{
-		
-		if (!isset($_POST[$campos]) || empty($_POST[$campos])) 
-		{
-		# validacion para no reciber un nombre de curso vacio
-		$errores[]=$campos; # nombre es una variable de html
-		}
-	}
-
 }
 
  ?>
